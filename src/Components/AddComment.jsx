@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-const AddComment = ({ submitDataHandler }) => {
+import http from "../Service/HttpService";
+const AddComment = ({ history }) => {
   const [data, setData] = useState(null);
 
   const changeHandler = (e) => {
@@ -9,7 +10,12 @@ const AddComment = ({ submitDataHandler }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (data) {
-      submitDataHandler(data);
+      http
+        .post("comments", data)
+        .then((res) => {
+          return history.push("/");
+        })
+        .catch();
     } else {
       alert("plz complete");
     }

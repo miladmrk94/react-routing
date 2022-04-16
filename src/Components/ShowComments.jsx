@@ -2,24 +2,32 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import http from "../Service/HttpService";
-const ShowComments = ({ dataId, deleteHandler }) => {
+const ShowComments = ({ match, history }) => {
+  const id = match.params.id;
+
   const [showComment, setShowComment] = useState(null);
 
   const onClickForDelete = (id) => {
-    deleteHandler(id);
-    console.log(dataId);
+    console.log(id);
     setShowComment(null);
+    http
+      .delete(`comments/${id}`)
+      .then((res) => {
+        return history.push("/");
+      })
+      .catch();
   };
+
   useEffect(() => {
-    if (dataId) {
+    if (id) {
       const getData = async () => {
-        const allData = await http.get(`comments/${dataId}`);
+        const allData = await http.get(`comments/${id}`);
         console.log(allData.data);
         setShowComment(allData.data);
       };
       getData();
     }
-  }, [dataId]);
+  }, [id]);
 
   return (
     <div className="showComments">

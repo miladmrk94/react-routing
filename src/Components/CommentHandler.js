@@ -12,27 +12,6 @@ const CommentHandler = () => {
     setDataId(id);
   };
 
-  const deleteHandler = (id) => {
-    console.log("delete comment with id:", id);
-    http
-      .delete(`comments/${id}`)
-      .then(() => {
-        return http.get("comments").then((res) => {
-          return setAllData(res.data);
-        });
-      })
-      .catch();
-    setDataId(null);
-  };
-  const submitDataHandler = (addData) => {
-    console.log(addData);
-    http
-      .post("comments", addData)
-      .then((res) => {
-        return setAllData([...allData, res.data]);
-      })
-      .catch();
-  };
   useEffect(() => {
     const getData = async () => {
       const allData = await http.get("comments");
@@ -41,7 +20,6 @@ const CommentHandler = () => {
     getData();
   }, []);
 
-  console.log(allData);
   return (
     <div className="sectionOne">
       <div className="comment">
@@ -61,8 +39,6 @@ const CommentHandler = () => {
           <h2>loading...</h2>
         )}
       </div>
-
-      {/* <ShowComments dataId={dataId} deleteHandler={deleteHandler} /> */}
     </div>
   );
 };
