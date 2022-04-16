@@ -1,9 +1,10 @@
 .container {
   display: flex;
   background-color: rgb(59, 59, 59);
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
+  flex-direction: column;
+}
+.activeLink{
+  color: red;
 }
 .sectionOne {
   display: flex;

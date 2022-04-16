@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import AddComment from "./AddComment";
 import Comment from "./Comment";
-import ShowComments from "./ShowComments";
 import http from "./../Service/HttpService";
 import { useState } from "react";
 const CommentHandler = () => {
@@ -46,7 +44,6 @@ const CommentHandler = () => {
   console.log(allData);
   return (
     <div className="sectionOne">
-      <AddComment submitDataHandler={submitDataHandler} />
       <div className="comment">
         {allData ? (
           allData.map((item) => {
@@ -56,6 +53,7 @@ const CommentHandler = () => {
                 name={item.name}
                 phone={item.phone}
                 onClick={() => clickHandler(item.id)}
+                to={`/Show/${item.id}`}
               />
             );
           })
@@ -64,7 +62,7 @@ const CommentHandler = () => {
         )}
       </div>
 
-      <ShowComments dataId={dataId} deleteHandler={deleteHandler} />
+      {/* <ShowComments dataId={dataId} deleteHandler={deleteHandler} /> */}
     </div>
   );
 };

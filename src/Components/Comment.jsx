@@ -1,15 +1,14 @@
 import React from "react";
-const Comment = ({ name, phone, onClick }) => {
+import { Link } from "react-router-dom";
+const Comment = ({ name, phone, onClick, to }) => {
   return (
     <div onClick={onClick}>
-      {name && phone ? (
+      <Link to={to}>
         <div className="commentBox">
           <h4>{name}</h4>
           <h4>{phone}</h4>
         </div>
-      ) : (
-        <h2>Oops !!!</h2>
-      )}
+      </Link>
     </div>
   );
 };

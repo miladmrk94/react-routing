@@ -1,11 +1,19 @@
 import "./App.css";
-import CommentHandler from "./Components/CommentHandler";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Layout from "./Layout/Layout";
+import allPages from "../src/Layout/Routes";
 
 function App() {
   return (
-    <div className="container">
-      <CommentHandler />
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Switch>
+          {allPages.map((i) => {
+            return <Route key={i.path} {...i} />;
+          })}
+        </Switch>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
