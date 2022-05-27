@@ -1,9 +1,15 @@
 import React from "react";
-import CommentHandler from "../CommentHandler";
+import useFetch from "./../../Hook/useFetch";
 const HomePage = () => {
+  const { login, data, err } = useFetch(
+    "https://jsonplaceholder.typicode.com/users"
+  );
+
   return (
     <div>
-      <CommentHandler />
+      {login && <p>Login.....</p>}
+      {data && <p>OK OK OK</p>}
+      {err && <p>ERROR</p>}
     </div>
   );
 };

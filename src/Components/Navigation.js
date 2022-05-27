@@ -1,6 +1,7 @@
 import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 const Navigation = () => {
+  const params = useParams();
   const allLinks = [
     { to: "/", name: "Home", exact: true },
     { to: "/New-Comment", name: "NewComment" },
@@ -14,7 +15,9 @@ const Navigation = () => {
             <li key={item.to}>
               <NavLink
                 to={item.to}
-                activeClassName="activeLink"
+                className={(navStyle) =>
+                  navStyle.isActive ? "activeLink" : ""
+                }
                 exact={item.exact || false}
               >
                 {item.name}
@@ -27,4 +30,4 @@ const Navigation = () => {
   );
 };
 
-export default withRouter(Navigation);
+export default Navigation;

@@ -1,17 +1,21 @@
 import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout";
-import allPages from "../src/Layout/Routes";
+import ShowComments from "./Components/ShowComments";
+import AddComment from "./Components/AddComment";
+import HomePage from "./Components/Page/HomePage";
+import NotFound from "./Components/NotFound";
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
-        <Switch>
-          {allPages.map((i) => {
-            return <Route key={i.path} {...i} />;
-          })}
-        </Switch>
+        <Routes>
+          <Route path="/Show/:id" element={<ShowComments />} />
+          <Route path="/New-Comment" element={<AddComment />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Layout>
     </BrowserRouter>
   );
